@@ -29,15 +29,7 @@ import com.github.pagehelper.PageInfo;
  */
 @Controller
 public class PqceeController {
-	/**
-	 * ResponseBody是MVC的一个json包，直接返回json数据
-	 * @return 
-	 */
-	//跳转页面
-	@RequestMapping("/pqcmanagementwithadmin.doingsomething")
-	public String tiaozhuan(){
-		return "pqcmanagement";
-	}
+	
 	
 	//自动注入
 	@Autowired
@@ -47,7 +39,27 @@ public class PqceeController {
 	informationService informationservice;
 	
 	
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/delinfo/{id}",method=RequestMethod.DELETE)
+	public Msg deleteinfo(@PathVariable("id")Integer id){
+		pqceeService.deleteInfomation(id);
+		return Msg.success();
+	}
 	
+	
+	/**
+	 * ResponseBody是MVC的一个json包，直接返回json数据
+	 * @return 
+	 */
+	//跳转页面
+	@RequestMapping("/pqcmanagementwithadmin.doingsomething")
+	public String tiaozhuan(){
+		return "pqcmanagement";
+	}
 	
 	/**
 	 * 更新product
@@ -61,8 +73,7 @@ public class PqceeController {
 		return Msg.success();
 	}
 	
-	
-	
+
 	/**
 	 * 更新info
 	 * @param information
@@ -76,11 +87,7 @@ public class PqceeController {
 		return Msg.success();
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	/**
 	 * 获取一列infomation
@@ -107,7 +114,6 @@ public class PqceeController {
 	}
 	
 	
-	
 	/**
 	 * 获取id为pro_id的list集合
 	 * @param proUuid
@@ -132,9 +138,6 @@ public class PqceeController {
 		return Msg.success();
 	}
 	
-	
-	
-	
 	/**
 	 * 获取编号(获取一列数据)
 	 * @param id
@@ -146,13 +149,7 @@ public class PqceeController {
 	information	inf= pqceeService.getinfoid(id);
 	return Msg.success().add("pqc", inf);
 	}
-	
-	
-	
 
-	
-
-	
 	//获取分页
 	@RequestMapping("/getpagelist")
 	@ResponseBody

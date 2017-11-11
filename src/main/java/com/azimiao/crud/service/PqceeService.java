@@ -119,6 +119,14 @@ public class PqceeService {
 
 
 
+	public void deleteInfomation(Integer id) {
+		informationMapper.deleteByPrimaryKey(id);
+		
+	}
+
+
+
+
 	
 
 

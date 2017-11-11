@@ -843,6 +843,8 @@
 			editBtn.attr("edit-uuid",item.uuid);
 			var delBtn =$("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
 			.append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
+			delBtn.attr("del-id",item.id);
+			delBtn.attr("del-uuid",item.uuid);
 			var infoBtn =$("<button></button>").addClass("btn btn-info btn-sm info_btn")
 			.append($("<span></span>").addClass("glyphicon glyphicon-comment")).append("查看");
 			infoBtn.attr("info-uuid",item.uuid);
@@ -1396,6 +1398,19 @@
 		} 
 		return re; 
 		}
+	
+	$(document).on("click","delete_btn",function(){
+		var thisid = $(this).attr("del-id");
+		if(confirm("确认删除这条记录吗?")){
+			$.ajax({
+				url:"${APP_PATH}//delinfo/"+thisid,
+				type:"DELETE",
+				success:function(result){
+					to_page(currentPage);
+				}
+			});
+		}
+	}
 </script>
 
 
