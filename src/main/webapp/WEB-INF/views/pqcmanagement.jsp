@@ -1060,10 +1060,19 @@
 	});
 	
 	//绑定删除事件
-	$(document).on("click","delete_btn",function(){
-		if(confirm("删除这个")){
-			alert("是的");
+	$(document).on("click",".delete_btn",function(){
+		var thisid = $(this).attr("del-id");
+		if(confirm("确认删除这条记录吗?")){
+			$.ajax({
+				url:"${APP_PATH}/delinfo/"+thisid,
+				type:"DELETE",
+				success:function(){
+					alert("删除成功");
+					to_page(currentPage);
+				}
+			});
 		}
+		
 	});
 	
 	function getinfouuid(uuid){

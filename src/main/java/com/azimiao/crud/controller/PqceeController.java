@@ -45,6 +45,7 @@ public class PqceeController {
 	 * @return
 	 */
 	@RequestMapping(value="/delinfo/{id}",method=RequestMethod.DELETE)
+	@ResponseBody
 	public Msg deleteinfo(@PathVariable("id")Integer id){
 		pqceeService.deleteInfomation(id);
 		return Msg.success();
